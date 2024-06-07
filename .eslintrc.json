@@ -47,6 +47,8 @@
           "./models/*/*",
           "@/routes/*/*",
           "./routes/*/*",
+          "@/schemas/*/*",
+          "./schemas/*/*",
           "@/services/*/*",
           "./services/*/*",
           "@/utils/*/*",
@@ -77,6 +79,8 @@
     "import/no-named-as-default": "off",
     // Unicorn rules
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/prefer-top-level-await": "off",
+    "unicorn/no-process-exit": "off",
     "unicorn/no-null": "off"
   },
   "overrides": [
