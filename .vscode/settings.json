@@ -14,5 +14,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "editor.tabSize": 2,
-  "cSpell.words": ["DPWD", "TDPWD"]
+  "cSpell.words": ["DPWD", "TDPWD"],
+  "editor.fontFamily": "JetBrains Mono, Monaco, 'Courier New', monospace"
 }
