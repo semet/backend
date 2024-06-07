@@ -1,0 +1,110 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "rules": {
+    // Prettier rules
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true,
+        "semi": false
+      }
+    ],
+    // TypeScript rules
+    "@typescript-eslint/no-explicit-any": "off",
+    // ESLint rules
+    "no-console": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "../*",
+          "../",
+          "..",
+          "@/configs/*/*",
+          "./configs/*/*",
+          "@/controllers/*/*",
+          "./controllers/*/*",
+          "@/features/*/*",
+          "./features/*/*",
+          "@/middlewares/*/*",
+          "./middlewares/*/*",
+          "@/models/*/*",
+          "./models/*/*",
+          "@/routes/*/*",
+          "./routes/*/*",
+          "@/services/*/*",
+          "./services/*/*",
+          "@/utils/*/*",
+          "./utils/*/*"
+        ]
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    // Import rules
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+        ],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
+    ],
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    // Unicorn rules
+    "unicorn/prevent-abbreviations": "off"
+  },
+  "overrides": [
+    {
+      "files": ["./__tests__/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "jest.config.js",
+    "commitlint.config.js"
+  ]
+}
