@@ -27,7 +27,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     // ESLint rules
     "no-console": "error",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off", //overrode by @typescript-eslint/no-unused-vars
     "no-restricted-imports": [
       "error",
       {
@@ -76,7 +76,8 @@
     "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
     // Unicorn rules
-    "unicorn/prevent-abbreviations": "off"
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off"
   },
   "overrides": [
     {
