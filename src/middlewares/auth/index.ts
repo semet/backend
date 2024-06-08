@@ -2,11 +2,13 @@ import { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { JwtPayload, verify } from 'jsonwebtoken'
 
+import { prisma } from '@/utils'
+
 import { publicRoutes } from './data'
 
 const jwtSecret = process.env.JWT_SECRET as string
 
-export const auth = (req: Request, res: Response, next: NextFunction) => {
+export const auth = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers
   const token = authorization?.split(' ')[1]
 
@@ -18,6 +20,18 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
   }
 
   if (!token) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: 'Unauthorized' })
+  }
+
+  const isBlacklisted = await prisma.blacklistedToken.findFirst({
+    where: {
+      token,
+    },
+  })
+
+  if (isBlacklisted) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ message: 'Unauthorized' })

@@ -9,4 +9,4 @@ const router = Router()
 router.post('/login', [validate(authSchema)], LoginController)
 router.get('/dashboard', DashboardController)
 
-export default router
+export const AdminRouter = router
