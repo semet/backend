@@ -8,21 +8,11 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
     "plugin:unicorn/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript"
   ],
   "rules": {
-    // Prettier rules
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto",
-        "singleQuote": true,
-        "semi": false
-      }
-    ],
     // TypeScript rules
     "@typescript-eslint/no-explicit-any": "off",
     // ESLint rules
