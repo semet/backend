@@ -16,7 +16,7 @@ enum Role {
 
 model RefreshToken {
   id        String   @id @default(uuid())
-  token     String
+  token     String   @db.LongText
   adminId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
