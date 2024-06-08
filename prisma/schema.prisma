@@ -6,3 +6,34 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  ADMIN
+  STUDENT
+  TEACHER
+  PARENT
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @db.LongText
+  adminId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Admin     Admin    @relation(fields: [adminId], references: [id])
+}
+
+model Admin {
+  id                String         @id @default(uuid())
+  email             String         @unique
+  phone             String         @unique
+  fullName          String
+  role              Role           @default(ADMIN)
+  password          String
+  lastLogin         DateTime?
+  profileUpdatedAt  DateTime?
+  passwordUpdatedAt DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  refreshToken      RefreshToken[]
+}
