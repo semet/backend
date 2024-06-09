@@ -6,6 +6,6 @@ export const authSchema = z.object({
   remember: z.boolean().optional(),
 })
 
-export const forgotPasswordSchema = z.object({
-  email: z.string().email(),
+export const updatePasswordSchema = z.object({
+  password: z.string().min(8),
 })

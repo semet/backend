@@ -1,4 +1,5 @@
 export * from './forgot-password-controller'
+export * from './update-password-controller'
 export * from './login-controller'
 export * from './logout-controller'
 export * from './refresh-token-controller'
