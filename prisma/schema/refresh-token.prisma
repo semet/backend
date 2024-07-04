@@ -1,0 +1,10 @@
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @db.LongText
+  adminId   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Admin     Admin?   @relation(fields: [adminId], references: [id])
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?
+}
