@@ -5,6 +5,7 @@ import { whitelist } from '@/configs'
 const isDev = process.env.NODE_ENV === 'development'
 
 export const cors = corsPackage({
+  credentials: true,
   origin: (origin, callback) => {
     if (isDev || (origin && whitelist.has(origin))) {
       callback(null, true)
