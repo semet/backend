@@ -1,11 +1,11 @@
 model Batch {
-  id           String      @id @default(uuid())
+  id           String     @id @default(uuid())
   name         String
   alias        String
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
   students     Student[]
-  Department   Department? @relation(fields: [departmentId], references: [id])
-  departmentId String?
+  Department   Department @relation(fields: [departmentId], references: [id])
+  departmentId String
   groups       Group[]
 }

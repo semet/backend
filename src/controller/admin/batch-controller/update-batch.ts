@@ -1,45 +1,52 @@
 import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
-import { CreateDepartmentRequest } from '@/schemas/admin'
+import { CreateBatchBatchRequest } from '@/schemas/admin'
 import { prisma } from '@/utils'
 
-export const UpdateDepartment = async (
-  req: Request<any, any, CreateDepartmentRequest>,
+export const UpdateBatch = async (
+  req: Request<any, any, CreateBatchBatchRequest>,
   res: Response,
 ) => {
   const { id } = req.params
-  const { name } = req.body
+  const { departmentId, name, alias } = req.body
 
-  const department = await prisma.department.findFirst({
+  if (!id)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: 'Id is required' })
+
+  const batch = await prisma.batch.findFirst({
     where: {
       id,
     },
   })
 
-  if (!department) {
+  if (!batch) {
     return res.status(StatusCodes.NOT_FOUND).json({
-      message: 'Department not found',
+      message: 'Batch not found',
     })
   }
 
-  await prisma.department
+  await prisma.batch
     .update({
       where: {
         id,
       },
       data: {
+        departmentId,
         name,
+        alias,
       },
     })
     .then(() => {
       return res.status(StatusCodes.OK).json({
-        message: 'Department updated successfully',
+        message: 'Batch updated successfully',
       })
     })
     .catch((error) => {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        message: 'Error updating department',
+        message: 'Error updating batch',
         error: error.message,
       })
     })

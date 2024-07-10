@@ -1,30 +1,32 @@
 import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
-import { CreateDepartmentRequest } from '@/schemas/admin'
+import { CreateBatchBatchRequest } from '@/schemas/admin'
 import { prisma } from '@/utils'
 
-export const CreateDepartment = async (
-  req: Request<any, any, CreateDepartmentRequest>,
+export const CreateBatch = async (
+  req: Request<any, any, CreateBatchBatchRequest>,
   res: Response,
 ) => {
-  const { name } = req.body
+  const { departmentId, name, alias } = req.body
 
-  await prisma.department
+  await prisma.batch
     .create({
       data: {
+        departmentId,
         name,
+        alias,
       },
     })
     .then(() => {
       return res
         .status(StatusCodes.CREATED)
-        .json({ message: 'Department created successfully' })
+        .json({ message: 'Batch created successfully' })
     })
     .catch((error) => {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         error,
-        message: 'Failed to create department',
+        message: 'Failed to create batch',
       })
     })
 }

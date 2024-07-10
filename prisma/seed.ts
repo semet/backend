@@ -23,9 +23,9 @@ async function main() {
       await prisma.batch
         .create({
           data: {
-            name: 'Ilmu Pengetahuan Alam',
+            name: 'I',
             departmentId: department.id,
-            alias: 'IPA',
+            alias: 'Satu',
           },
         })
         .then(async (batch) => {
