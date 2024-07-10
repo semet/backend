@@ -1,30 +1,30 @@
 import { Router } from 'express'
 
 import {
+  CreateDepartment,
   DashboardController,
+  DeleteDepartment,
   LoginController,
-  DepartmentController,
+  ShowDepartments,
+  UpdateDepartment,
+  ViewDepartment,
 } from '@/controller/admin'
 import { validate } from '@/middlewares'
-import { DepartmentSchema, authSchema } from '@/schemas/admin'
+import { createDepartmentSchema, authSchema } from '@/schemas/admin'
 
 const router = Router()
 
 router.post('/login', [validate(authSchema)], LoginController)
 router.get('/dashboard', DashboardController)
 // Department
-router.get('/departments', DepartmentController.show)
-router.post(
-  '/department',
-  [validate(DepartmentSchema.create)],
-  DepartmentController.create,
-)
-router.get('/department/:id', DepartmentController.view)
+router.get('/departments', ShowDepartments)
+router.post('/department', [validate(createDepartmentSchema)], CreateDepartment)
+router.get('/department/:id', ViewDepartment)
 router.put(
   '/department/:id',
-  [validate(DepartmentSchema.create)],
-  DepartmentController.update,
+  [validate(createDepartmentSchema)],
+  UpdateDepartment,
 )
-router.delete('/department/:id', DepartmentController.delete)
+router.delete('/department/:id', DeleteDepartment)
 
 export const AdminRouter = router
