@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 
 import { prisma } from '@/utils'
 
-export const DeleteBatch = async (req: Request, res: Response) => {
+export const DeleteStudyGroup = async (req: Request, res: Response) => {
   const { id } = req.params
 
   if (!id)
@@ -11,7 +11,7 @@ export const DeleteBatch = async (req: Request, res: Response) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: 'ID is required' })
 
-  await prisma.batch
+  await prisma.group
     .delete({
       where: {
         id,
@@ -19,12 +19,12 @@ export const DeleteBatch = async (req: Request, res: Response) => {
     })
     .then(() => {
       return res.status(StatusCodes.OK).json({
-        message: 'Batch deleted successfully',
+        message: 'Study Group deleted successfully',
       })
     })
     .catch((error) => {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        message: 'Error deleting batch',
+        message: 'Error deleting study group',
         error: error.message,
       })
     })
