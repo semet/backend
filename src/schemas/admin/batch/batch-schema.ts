@@ -10,4 +10,4 @@ export const batchSchema = z.object({
   }),
 })
 
-export type CreateBatchBatchRequest = z.infer<typeof batchSchema>
+export type CreateBatchRequest = z.infer<typeof batchSchema>
